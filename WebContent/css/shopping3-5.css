@@ -1,0 +1,77 @@
+body {
+	font-family: ±¼¸²Ã¼
+}
+
+div.body{
+	overflow-y: auto;
+	scrollbar-face-color: #C9BFED;
+	scrollbar-shadow-color: #EDEDED;
+	margin-top: 10px;
+}
+
+div.cart{
+	border:1px solid gray;
+	width=320px;
+	height=58px;
+}
+
+tr.header{
+	background: #C9BFED;
+}
+
+tr.record{
+	background: #EDEDED;
+}
+
+input.userId{
+	height: 20px;
+	width: 150px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+input.password{
+	height: 20px;
+	width: 150px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+input.userName{
+	height: 20px;
+	width: 150px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+input.postCode{
+	height: 20px;
+	width: 80px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+input.address{
+	height: 20px;
+	width: 240px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+input.email{
+	height: 20px;
+	width: 240px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+input.birthDay{
+	height: 20px;
+	width: 100px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+select.jobs{
+	width: 100px;
+}

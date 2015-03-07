@@ -19,7 +19,7 @@
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://localhost/spring?useUnicode=true&amp;characterEncoding=utf8
+			<value>jdbc:mysql://localhost:3306/spring?useUnicode=true&amp;characterEncoding=utf8
 			</value>
 		</property>
 		<property name="username">
@@ -29,6 +29,21 @@
 			<value>1234</value>
 		</property>
 	</bean>
+	
+	<!-- Ibatis setting for board -->
+   	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+   		<property name="dataSource" ref="dataSource" />
+   		<property name="configLocation" value="classpath:/config/sqlMapConfig.xml" />	
+   	</bean>
+   	
+   	<bean id="sqlMapClientTemplate"
+   		class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+   		<property name="sqlMapClient" ref="sqlMapClient" />	
+   	</bean>
+
+  	<bean id="boardService" class="dao.BoardService">
+   		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplate" />
+   	</bean>
 
 	<!-- Transaction -->
 	<bean id="transactionManager"

@@ -16,6 +16,7 @@
 				<font color="red"><a href="../loginform/login.html">■로그인하기</a></font>
 			</c:when>
 		</c:choose></td>
+		<td width="160"><a href="../board/list.html">■공지사항</a></td>
 	</tr>
 </table>
 </div>

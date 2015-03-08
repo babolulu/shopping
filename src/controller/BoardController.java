@@ -92,7 +92,7 @@ public class BoardController {
 		if (loginUser != null) {
 			mav.addObject("loginUser", loginUser);
 		}
-		
+		System.out.println("");
 		mav.addObject("boardList", boardList);
 		mav.addObject("pageHtml", pageHtml);
 		mav.setViewName("/board/list");

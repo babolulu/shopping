@@ -27,7 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 import utils.WebConstants;
 
 @Controller
-@RequestMapping("/board")
 public class BoardController {
 	// DI
 	@Autowired
@@ -47,7 +46,7 @@ public class BoardController {
 	//
 	//
 	
-	@RequestMapping("/list.html")
+	@RequestMapping(value = "/board/list")
 	public ModelAndView boardList(HttpServletRequest request, HttpServletResponse response, HttpSession session){
 		
 		String type = null;
@@ -169,7 +168,7 @@ public class BoardController {
 		return pageHtml;
 	}
 	
-	@RequestMapping("/view.html")
+	@RequestMapping(value = "/board/view")
 	public ModelAndView boardView(HttpServletRequest request){
 		int idx = Integer.parseInt(request.getParameter("idx"));		
 		BoardModel board = boardService.getOneArticle(idx); // get selected article model
@@ -184,7 +183,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping("/write.html")
+	@RequestMapping(value = "/board/write")
 	public ModelAndView boardWrite(@ModelAttribute("BoardModel") BoardModel boardModel, HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		System.out.println("write");
@@ -196,7 +195,7 @@ public class BoardController {
 		return mav;	
 	}
 	
-	@RequestMapping(value="/write.html", method=RequestMethod.POST)
+	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
 	public ModelAndView boardWriteProc(@ModelAttribute("BoardModel") BoardModel boardModel, MultipartHttpServletRequest request, HttpSession session){
 		// get upload file
 		System.out.println("write post");
@@ -230,7 +229,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping("/commentWrite.html")
+	@RequestMapping(value = "/board/commentWrite")
 	public ModelAndView commentWriteProc(@ModelAttribute("CommentModel") BoardCommentModel commentModel){
 		// new line code change to <br /> tag
 		String content = commentModel.getContent().replaceAll("\r\n", "<br />");
@@ -244,7 +243,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping("/modify.html")
+	@RequestMapping(value = "/board/modify")
 	public ModelAndView boardModify(HttpServletRequest request, HttpSession session){
 		String userId = (String) session.getAttribute("userId");
 		int idx = Integer.parseInt(request.getParameter("idx"));
@@ -269,7 +268,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/modify.html", method=RequestMethod.POST)
+	@RequestMapping(value = "/board/modify", method = RequestMethod.POST)
 	public ModelAndView boardModifyProc(@ModelAttribute("BoardModel") BoardModel boardModel, MultipartHttpServletRequest request){
 		String orgFileName = request.getParameter("orgFile");
 		MultipartFile newFile = request.getFile("newFile");
@@ -309,7 +308,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping("/delete.html")
+	@RequestMapping(value = "/board/delete")
 	public ModelAndView boardDelete(HttpServletRequest request, HttpSession session){
 		String userId = (String) session.getAttribute("userId");
 		int idx = Integer.parseInt(request.getParameter("idx"));
@@ -343,7 +342,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping("/commentDelete.html")
+	@RequestMapping(value = "/board/commentDelete")
 	public ModelAndView commendDelete(HttpServletRequest request, HttpSession session){
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		int linkedArticleNum = Integer.parseInt(request.getParameter("linkedArticleNum"));
@@ -365,7 +364,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping("/recommend.html")
+	@RequestMapping(value = "/board/recommend")
 	public ModelAndView updateRecommendcount(HttpServletRequest request, HttpSession session){
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		String userId = (String) session.getAttribute("userId");

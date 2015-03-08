@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ include file="/WEB-INF/jsp/jsp_header.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,10 +28,11 @@
 <%@ include file="/WEB-INF/jsp/cart_header.jsp"%>
 <div class="wrapper">	
 	<h3>새 글 쓰기${loginUser.userId}</h3>
-	<form action="write.html" method="post" onsubmit="return writeFormCheck()" enctype="multipart/form-data">	
+	<!-- <form action="write.html" method="post" onsubmit="return writeFormCheck()" enctype="multipart/form-data"> -->
+	<form:form modelAttribute="user" method="post" action="../board/write.html" onsubmit="return writeFormCheck()" enctype="multipart/form-data">	
 	<table class="boardWrite">	
 		<tr>
-			<th><label for="subject">제목</label></th>
+			<th><label for="subject">제목${loginUser.userName} & ${loginUser.userId}</label></th>
 			<td>
 				<input type="text" id="subject" name="subject" class="boardSubject"/>
 				<input type="hidden" id="writer" name="writer" value="${loginUser.userName}" />
@@ -51,7 +53,8 @@
 	<input type="reset" value="재작성" class="writeBt"/>
 	<input type="submit" value="확인m" class="writeBt"/>
 
-	</form>
+	<!-- </form> -->
+	</form:form>
 </div>
 </body>
 </html>

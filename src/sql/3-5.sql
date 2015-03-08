@@ -1,3 +1,9 @@
+
+create database spring;
+CREATE USER 'spring'@'localhost' IDENTIFIED BY 'spring';
+grant all on spring.* to 'spring'@'localhost' identified by 'spring';
+FLUSH PRIVILEGES;
+
 USE SPRING;
 
 Drop table sale;

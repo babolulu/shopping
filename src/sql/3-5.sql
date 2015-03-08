@@ -45,6 +45,33 @@ CREATE TABLE IF NOT EXISTS SALE_LINE(
 	FOREIGN KEY (ITEM_ID) REFERENCES ITEM (ITEM_ID)	
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+// board 관련 2개 테이블 추가 부분
+CREATE TABLE `jmboard` (
+  `idx` int(8) unsigned NOT NULL AUTO_INCREMENT,
+  `writer` varchar(50) NOT NULL,
+  `subject` varchar(150) NOT NULL,
+  `content` text NOT NULL,
+  `hitcount` int(8) NOT NULL,
+  `recommendcount` int(8) NOT NULL,
+  `writedate` date NOT NULL,
+  `writerid` varchar(50) NOT NULL,
+  `filename` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idx`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `jmboard_comment` (
+  `idx` int(8) unsigned NOT NULL AUTO_INCREMENT,
+  `writer` varchar(50) NOT NULL,
+  `content` varchar(500) NOT NULL,
+  `writedate` date NOT NULL,
+  `linkedarticlenum` int(8) DEFAULT NULL,
+  `writerid` varchar(50) NOT NULL,
+  PRIMARY KEY (`idx`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
 DELETE FROM ITEM;
 LOAD DATA LOCAL INFILE 'c:/item.csv' 
 INTO TABLE ITEM 

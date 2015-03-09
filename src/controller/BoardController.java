@@ -31,6 +31,7 @@ public class BoardController {
 	// DI
 	@Autowired
 	private BoardService boardService;
+		
 	//
 	// * User variable
 	// article, page variables
@@ -42,13 +43,12 @@ public class BoardController {
 	private int totalNum = 0;
 	//
 	// file upload path
-	private String uploadPath = "D:\\Workspace\\SummerBoard\\WebContent\\files\\";
-	//
+	private String uploadPath = "C:\\Development\\eclipse-luna_2015_git\\workspace\\shoppingFiles\\";
 	//
 	
+
 	@RequestMapping(value = "/board/list")
 	public ModelAndView boardList(HttpServletRequest request, HttpServletResponse response, HttpSession session){
-		
 		String type = null;
 		String keyword = null;		
 		
@@ -92,7 +92,6 @@ public class BoardController {
 		if (loginUser != null) {
 			mav.addObject("loginUser", loginUser);
 		}
-		System.out.println("");
 		mav.addObject("boardList", boardList);
 		mav.addObject("pageHtml", pageHtml);
 		mav.setViewName("/board/list");
@@ -186,7 +185,6 @@ public class BoardController {
 	@RequestMapping(value = "/board/write")
 	public ModelAndView boardWrite(@ModelAttribute("BoardModel") BoardModel boardModel, HttpSession session){
 		ModelAndView mav = new ModelAndView();
-		System.out.println("write");
 		User loginUser = (User) session.getAttribute(WebConstants.USER_KEY);
 		if (loginUser != null) {
 			mav.addObject("loginUser", loginUser);
@@ -198,7 +196,6 @@ public class BoardController {
 	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
 	public ModelAndView boardWriteProc(@ModelAttribute("BoardModel") BoardModel boardModel, MultipartHttpServletRequest request, HttpSession session){
 		// get upload file
-		System.out.println("write post");
 		MultipartFile file = request.getFile("file");
 		String fileName = file.getOriginalFilename();
 		File uploadFile = new File(uploadPath + fileName);
@@ -213,19 +210,25 @@ public class BoardController {
 		} catch (Exception e) {
 			System.out.println("write post exception");
 		}
+		
+		// user ID 및 Name 을 board 에 WriteID 및 Writer 에 입력
 		boardModel.setFileName(fileName);
 		//
 		// new line code change to <br /> tag	
-		String content =  boardModel.getContent().replaceAll("\r\n", "<br />");		
+		String content =  boardModel.getContent().replaceAll("\r\n", "<br />");
 		boardModel.setContent(content);
 		//
 		boardService.writeArticle(boardModel);		
 		ModelAndView mav = new ModelAndView();
 		User loginUser = (User) session.getAttribute(WebConstants.USER_KEY);
+		boardModel.setWriterId(loginUser.getUserId());//게시판 글 작성자 id 셋팅
+		boardModel.setWriter(loginUser.getUserName());//게시판 글 작성자 name 셋팅
 		if (loginUser != null) {
 			mav.addObject("loginUser", loginUser);
+			mav.addObject("writerId", boardModel.getWriterId());
+			mav.addObject("writerName", boardModel.getWriter());
 		}
-		mav.setViewName("/list");
+		mav.setViewName("redirect:list.html");
 		return mav;
 	}
 	
@@ -263,7 +266,7 @@ public class BoardController {
 		} else {
 			mav.addObject("board", board);
 			mav.setViewName("/board/modify");
-		}		
+		}
 		
 		return mav;
 	}

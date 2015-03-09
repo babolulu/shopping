@@ -13,6 +13,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Development/eclipse-luna_2015_git/apache-tomcat-7.0.59-windows-x64/apache-tomcat-7.0.59/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

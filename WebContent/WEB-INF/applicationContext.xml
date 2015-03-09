@@ -74,6 +74,13 @@
 		</property>
 	</bean>
 
+	
+	
+	<!-- Fileupload related interceptor -->
+   	<bean id="multipartResolver"
+   		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+   	</bean>
+
 	<!-- Validator -->
 	<bean id="loginValidator" class="utils.LoginValidator" />
 	<bean id="userEntryValidator" class="utils.UserEntryValidator" />

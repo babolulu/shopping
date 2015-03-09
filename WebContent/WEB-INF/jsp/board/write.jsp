@@ -27,12 +27,12 @@
 <body>
 <%@ include file="/WEB-INF/jsp/cart_header.jsp"%>
 <div class="wrapper">	
-	<h3>새 글 쓰기${loginUser.userId}</h3>
+	<h3>새 글 쓰기</h3>
 	<!-- <form action="write.html" method="post" onsubmit="return writeFormCheck()" enctype="multipart/form-data"> -->
-	<form:form modelAttribute="user" method="post" action="../board/write.html" onsubmit="return writeFormCheck()" enctype="multipart/form-data">	
+	<form:form modelAttribute="user" method="post" action="write.html" onsubmit="return writeFormCheck()" enctype="multipart/form-data">	
 	<table class="boardWrite">	
 		<tr>
-			<th><label for="subject">제목${loginUser.userName} & ${loginUser.userId}</label></th>
+			<th><label for="subject">제목</label></th>
 			<td>
 				<input type="text" id="subject" name="subject" class="boardSubject"/>
 				<input type="hidden" id="writer" name="writer" value="${loginUser.userName}" />
